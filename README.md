@@ -13,6 +13,31 @@ Here is the whiteboarding I created
 
 Unfortunately I didnt do much pseudo code for this project, mainly because I find it easier to research my topic instead.
 
+Essentially the way it would look is as such (Formatted with JS so its easier to see what is going on with syntax highlighting)
+
+```js
+let API = "https://osu.ppy.sh/api/v2/"
+let res = get(`${API}/me/osu`)
+
+console.log(res) // useful for seeing what is in the response
+
+infoVariable += `
+    <h2>Profile Stats</h2>
+    <ul>
+        <li>Username: ${res.username}</li>
+        <li>Rank: ${res.rank}</li>
+        <li>Country: ${res.country}</li>
+        <li>Play Count: ${res.playCount}</li>
+        <li>Accuracy: ${res.accuracy}</li>
+    </ul>
+`
+
+info.innerHTML = infoVariable;
+
+```
+
+This is super basic, and doesnt cover everything such as CSS or even authentication.
+
 ## Sources
 
 [Osu API Wiki](https://osu.ppy.sh/docs/index.html)
