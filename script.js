@@ -1,35 +1,47 @@
-const id = document.querySelector('#appid').value
-const secret = document.querySelector('#secret').value
-const baseURL = "https://osu.ppy.sh/api/v2"
+const id = document.querySelector('#userID')
 let access_token = ""
 
 const infoarea = document.querySelector('#infoarea')
 const btn = document.querySelector('#test')
 
-async function getToken() {
-    if(access_token === "") {
-        let res = await axios.get(`${baseURL}/oauth/token/client_id=${id}&client_secret=${secret}&grant_type=client_credentials&scope=public`)
-        access_token = res.data.access_token
-        return access_token
-    }
+async function getCredentials() {
+    const response = await fetch('/credentials.json');
+    const data = await response.json();
+    return data;
+}
 
-    return access_token // return here, since if the token is already set, we don't need to get a new one
+const credentials = await getCredentials()
+
+const tokenData = {
+    client_id: credentials.id,
+    client_secret: credentials.secret,
+    grant_type: 'client_credentials',
+    scope: 'public'
+}
+
+async function getToken() {
+    if(access_token == "") {
+        await axios.post('https://osu.ppy.sh/oauth/token', tokenData, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(response => {
+            access_token = response.data.access_token
+            return access_token
+        })
+    }
+    console.log(access_token)
+    return access_token
 }
 
 async function showInfo() {
-    let token = await getToken()
-
-    let res = await axios.get(`${baseURL}/users/2`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
-
-    infoarea.innerHTML = `
-        <p>Username: ${v2User.username}</p>
-        <p>Country: ${v2User.country}</p>
-        <p>Playcount: ${v2User.statistics.play_count}</p>
-    `
+    const response = await axios.get(`https://osu.ppy.sh/api/v2/user/${id.value}/osu`, {
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
 }
 
-btn.addEventListener('click', showInfo)
+btn.addEventListener('click', await showInfo)
