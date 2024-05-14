@@ -1,4 +1,4 @@
-# Osu-stats-tool
+# Weather-Journal
 A tool that shows the user their profile stats, with other metrics included
 
 ## How will I do this?

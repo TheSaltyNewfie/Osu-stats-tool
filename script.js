@@ -37,11 +37,14 @@ async function getToken() {
 }
 
 async function showInfo() {
-    const response = await axios.get(`https://osu.ppy.sh/api/v2/user/${id.value}/osu`, {
-            headers: {
-                'Authorization': `Bearer ${access_token}`
-            }
-        });
+    await axios.get('https://osu.ppy.sh/api/v2/users/' + id.value, {
+        headers: {
+            'Authorization': 'Bearer ' + await getToken()
+        }
+    })
+    .then(response => {
+        infoarea.innerHTML = JSON.stringify(response.data)
+    })
 }
 
-btn.addEventListener('click', await showInfo)
+btn.addEventListener('click', showInfo)
