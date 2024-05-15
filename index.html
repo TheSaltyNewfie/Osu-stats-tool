@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="script.js" type="module"></script>
-    <title>Osu Stats</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Journal</title>
 </head>
 <body>
-    <h1>Osu stats temp stuff</h1>
-    <input type="number" id="userID" placeholder="Osu ID Here"/>
-    <button id="test">Get Info</button>
-    <div id="infoarea"></div>
+    <header>
+        <h1>Weather Journal</h1>
+        <input type="text" id="location" placeholder="Location"/>
+        <p>Please input what you see outside</p>
+    </header>
+    <div id="card">
+        <div id="form">
+            <select id="weatherType">
+                <option value="sunny">Sunny</option>
+                <option value="cloudy">Cloudy</option>
+                <option value="rainy">Rainy</option>
+                <option value="stormy">Stormy</option>
+                <option value="snowy">Snowy</option>
+            </select>
+            <input type="number" id="temperature" placeholder="Temperature (Celsius)"/>
+            <input type="number" id="humidity" placeholder="Humidity%"/>
+            <textarea id="description" placeholder="Describe the weather"></textarea>
+            <button id="submitBtn">Submit</button>
+        </div>
+    </div>
+    <div id="card" class="infoarea">
+        <h1>Results</h1>
+    </div>
 </body>
 </html>

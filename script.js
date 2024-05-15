@@ -1,50 +1,26 @@
-const id = document.querySelector('#userID')
-let access_token = ""
+const location = document.querySelector('#location')
+const weatherType = document.querySelector('#weatherType')
+const temperature = document.querySelector('#temperature')
+const humidity = document.querySelector('#humidity')
+const description = document.querySelector('#description')
+const submit = document.querySelector('#submit')
+const results = document.querySelector('.infoarea')
 
-const infoarea = document.querySelector('#infoarea')
-const btn = document.querySelector('#test')
+function getWeather(postalCode) {
 
-async function getCredentials() {
-    const response = await fetch('/credentials.json');
-    const data = await response.json();
-    return data;
 }
 
-const credentials = await getCredentials()
+function getPastes() {
+    // fetch pastes from the API
 
-const tokenData = {
-    client_id: credentials.id,
-    client_secret: credentials.secret,
-    grant_type: 'client_credentials',
-    scope: 'public'
 }
 
-async function getToken() {
-    if(access_token == "") {
-        await axios.post('https://osu.ppy.sh/oauth/token', tokenData, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        })
-        .then(response => {
-            access_token = response.data.access_token
-            return access_token
-        })
-    }
-    console.log(access_token)
-    return access_token
+function setPaste(paste) {
+    // send a paste to the API
+
 }
 
-async function showInfo() {
-    await axios.get('https://osu.ppy.sh/api/v2/users/' + id.value, {
-        headers: {
-            'Authorization': 'Bearer ' + await getToken()
-        }
-    })
-    .then(response => {
-        infoarea.innerHTML = JSON.stringify(response.data)
-    })
-}
+function compare(userData, weatherData) {
+    // compare data and return a result
 
-btn.addEventListener('click', showInfo)
+}
