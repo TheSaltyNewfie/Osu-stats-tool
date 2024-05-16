@@ -6,12 +6,7 @@ const description = document.querySelector('#description')
 const submitBtn = document.querySelector('#submitBtn')
 const results = document.querySelector('#past-journals')
 const clearBtn = document.querySelector('#clearBtn')
-
-async function getCredentials() {
-    const response = await fetch('/credentials.json');
-    const data = await response.json();
-    return data;
-}
+const apiKey = document.querySelector('#apiKey')
 
 function addToLocalStorage(key, data) {
     var local = localStorage.getItem(key)
@@ -79,8 +74,7 @@ function updateResults(keys) {
 }
 
 async function submit() {
-    let creds = await getCredentials()
-    let res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${creds.weather_key}&q=${location.value}&aqi=no`)
+    let res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${apiKey.value}&q=${location.value}&aqi=no`)
 
     let data = {
         location: res.data.location.name,
