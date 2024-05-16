@@ -27,32 +27,19 @@ function getFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
 
+function deleteFromLocalStorage(key) {
+    localStorage.removeItem(key)
+}
+
+function lengthOfLocalStorage() {
+    return localStorage.length
+}
+
+
 async function getWeather(postalCode) {
     const res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${await getCredentials().weather_key}&q=${postalCode}&aqi=no`)
 
     return res.data;
-}
-
-function getPrevData() {
-    
-}
-
-async function addData(data) {
-    let credentials = await getCredentials()
-
-    const url = "https://pastebin.com/api/api_post.php"
-    const formData = new FormData()
-    formData.append('api_dev_key', credentials.pastebin_key)
-    console.log(credentials.pastebin_key)
-    formData.append('api_user_name', credentials.pastebin_user)
-    formData.append('api_user_password', credentials.pastebin_password)
-    formData.append('api_option', 'paste')
-    formData.append('api_paste_code', JSON.stringify(data))
-
-    const response = await axios.post(url, formData)
-
-    console.log(response.data)
-
 }
 
 function compare(userData, weatherData) {
@@ -60,6 +47,14 @@ function compare(userData, weatherData) {
 
 }
 
-submit.addEventListener('click', async () => {
-    await addData("Hello World!")
+submit.addEventListener('click', () => {
+    addToLocalStorage('test', {name: 'toby', age: 18})
+
+    console.log(getFromLocalStorage('test'))
+
+    addToLocalStorage('test', {name: 'peepnis', age: 69})
+
+    console.log(getFromLocalStorage('test'))
+
+    deleteFromLocalStorage('test')
 })
