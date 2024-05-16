@@ -48,6 +48,8 @@ function prepareData() {
 }
 
 function updateResults(keys) {
+    results.innerHTML = ''
+
     keys.forEach(key => {
         results.innerHTML += `
             <div id="card">
