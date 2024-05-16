@@ -42,9 +42,12 @@ async function getWeather(postalCode) {
     return res.data;
 }
 
-function compare(userData, weatherData) {
-    // compare data and return a result
+function prepareData(keyIdentifier) {
+    
+}
 
+async function compare(userData, weatherData) {
+    
 }
 
 submit.addEventListener('click', () => {
