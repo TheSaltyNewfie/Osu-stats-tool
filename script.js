@@ -5,6 +5,7 @@ const humidity = document.querySelector('#humidity')
 const description = document.querySelector('#description')
 const submitBtn = document.querySelector('#submitBtn')
 const results = document.querySelector('#past-journals')
+const clearBtn = document.querySelector('#clearBtn')
 
 async function getCredentials() {
     const response = await fetch('/credentials.json');
@@ -33,6 +34,10 @@ function deleteFromLocalStorage(key) {
 
 function lengthOfLocalStorage() {
     return localStorage.length
+}
+
+function clearLocalStorage() {
+    localStorage.clear()
 }
 
 function prepareData() {
@@ -106,4 +111,9 @@ await init()
 
 submitBtn.addEventListener('click', async () => {
     await submit()
+})
+
+clearBtn.addEventListener('click', () => {
+    clearLocalStorage()
+    results.innerHTML = ''
 })
