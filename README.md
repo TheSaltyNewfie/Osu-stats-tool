@@ -49,6 +49,12 @@ info.innerHTML = infoVariable;
 
 This is super basic, and doesnt cover everything such as CSS or even authentication.
 
+## Technology
+
+[Axios](https://axios-http.com/docs/intro)
+[localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+
+
 ## Sources
 
 [Weather API](https://www.weatherapi.com/)
