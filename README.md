@@ -1,12 +1,23 @@
 # Weather-Journal
-A tool that shows the user their profile stats, with other metrics included
+A pure javascript and HTML app that allows a user to journal the weather they see, and compare it to other data which is from the [Weather API](https://www.weatherapi.com/)
 
 ## How will I do this?
-Considering I am doing this with essentially bare javascript, I am going to use axios for API calls, and the Osu! V2 API
+To save journals I use a feature from the browser, that allows me to save data to the clients computer, here is an example of this:
+```js
+localStorage.setItem('Person', {'Name': 'John Doe'}) // create a key called "Person" and give it data
+
+let data = JSON.parse(localStorage.getItem('Person'))
+
+console.log(data) // expected result should be {'Name': 'John Doe'}
+```
+
+Local storage in the browser has a max of 5 MB of data, so I am limited by that
 
 ## Whiteboarding
 
-Here is the whiteboarding I created
+Unfortunately because I had to switch APIs midway for this assignment, I do not have any whiteboarding for it, but I have whiteboarding of the original project!
+
+Here is the whiteboarding I created: 
 ![Whiteboarding](/whiteboarding.drawio.png)
 
 ## Pseudo code
@@ -40,4 +51,6 @@ This is super basic, and doesnt cover everything such as CSS or even authenticat
 
 ## Sources
 
-[Osu API Wiki](https://osu.ppy.sh/docs/index.html)
+[Weather API](https://www.weatherapi.com/)
+
+[MDN Docs](https://developer.mozilla.org/en-US/)
