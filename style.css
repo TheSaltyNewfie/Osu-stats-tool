@@ -56,11 +56,15 @@ button {
 #card {
     display: flex;
     align-items: center;
-    flex-flow: column;
+    flex-flow: row wrap;
     background-color: #1E2D2E;
     padding: 2rem;
     margin: 0.25rem;
     border-radius: 0.5rem;
+}
+
+#card > * {
+    padding: 10px;
 }
 
 #infoarea {

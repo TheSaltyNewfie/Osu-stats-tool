@@ -3,8 +3,8 @@ const weatherType = document.querySelector('#weatherType')
 const temperature = document.querySelector('#temperature')
 const humidity = document.querySelector('#humidity')
 const description = document.querySelector('#description')
-const submit = document.querySelector('#submitBtn')
-const results = document.querySelector('.infoarea')
+const submitBtn = document.querySelector('#submitBtn')
+const results = document.querySelector('#past-journals')
 
 async function getCredentials() {
     const response = await fetch('/credentials.json');
@@ -35,28 +35,71 @@ function lengthOfLocalStorage() {
     return localStorage.length
 }
 
-
-async function getWeather(postalCode) {
-    const res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${await getCredentials().weather_key}&q=${postalCode}&aqi=no`)
-
-    return res.data;
-}
-
-function prepareData(keyIdentifier) {
+function prepareData() {
     let keys = []
     
     for(let i = 0; i < lengthOfLocalStorage(); i++) {
-        let key = localstorage.key(i);
-        if(key.includes(keyIdentifier)) {
-            keys.push(key)
-        }
+        let key = getFromLocalStorage(i);
+        console.log(key)
+        keys.push(key)
+    }
+
+    return keys
+}
+
+function updateResults(keys) {
+    keys.forEach(key => {
+        results.innerHTML += `
+            <div id="card">
+                <div>
+                    <h2>Location: <span id="location1">${key.location}</span></h2>
+                    <p>Weather: <span id="weatherType1">${key.weatherType}</span></p>
+                    <p>Temperature: <span id="temperature1">${key.temperature}</span>°C</p>
+                    <p>Humidity: <span id="humidity1">${key.humidity}</span>%</p>
+                    <p>Description: <span id="description1">${key.description}</span></p>
+                </div>
+                <br>
+                <div>
+                    <h2>API Results</h2>
+                    <p>Weather: <span id="weatherType1">${key.api_weatherType}</span></p>
+                    <p>Temperature: <span id="temperature1">${key.api_temperature}</span>°C</p>
+                    <p>Humidity: <span id="humidity1">${key.api_humidity}</span>%</p>
+                </div>
+            </div>
+        `
+    })
+}
+
+async function submit() {
+    let creds = await getCredentials()
+    let res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${creds.weather_key}&q=${location.value}&aqi=no`)
+    let keys = prepareData()
+
+    let data = {
+        location: location.value,
+        weatherType: weatherType.value,
+        temperature: temperature.value,
+        humidity: humidity.value,
+        description: description.value,
+        api_weatherType: res.data.current.condition.text,
+        api_temperature: res.data.current.temp_c,
+        api_humidity: res.data.current.humidity
+    }
+
+    addToLocalStorage(lengthOfLocalStorage().toString(), data)
+    updateResults(keys)
+}
+
+async function init() {
+    let keys = prepareData()
+
+    if(keys.length > 0) {
+        updateResults(keys)
     }
 }
 
-async function compare(userData, weatherData) {
-    
-}
+await init()
 
-submit.addEventListener('click', () => {
-    addToLocalStorage('userData',)
+submitBtn.addEventListener('click', async () => {
+    await submit()
 })
