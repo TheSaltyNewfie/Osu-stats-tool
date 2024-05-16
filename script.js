@@ -43,7 +43,14 @@ async function getWeather(postalCode) {
 }
 
 function prepareData(keyIdentifier) {
+    let keys = []
     
+    for(let i = 0; i < lengthOfLocalStorage(); i++) {
+        let key = localstorage.key(i);
+        if(key.includes(keyIdentifier)) {
+            keys.push(key)
+        }
+    }
 }
 
 async function compare(userData, weatherData) {
@@ -51,13 +58,5 @@ async function compare(userData, weatherData) {
 }
 
 submit.addEventListener('click', () => {
-    addToLocalStorage('test', {name: 'toby', age: 18})
-
-    console.log(getFromLocalStorage('test'))
-
-    addToLocalStorage('test', {name: 'peepnis', age: 69})
-
-    console.log(getFromLocalStorage('test'))
-
-    deleteFromLocalStorage('test')
+    addToLocalStorage('userData',)
 })
