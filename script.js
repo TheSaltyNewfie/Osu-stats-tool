@@ -59,6 +59,7 @@ function updateResults(keys) {
                     <p>Temperature: <span id="temperature1">${key.temperature}</span>°C</p>
                     <p>Humidity: <span id="humidity1">${key.humidity}</span>%</p>
                     <p>Description: <span id="description1">${key.description}</span></p>
+                    <p>Date: <span id="date1">${key.date}</span></p>
                 </div>
                 <br>
                 <div>
@@ -75,21 +76,22 @@ function updateResults(keys) {
 async function submit() {
     let creds = await getCredentials()
     let res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${creds.weather_key}&q=${location.value}&aqi=no`)
-    let keys = prepareData()
 
     let data = {
-        location: location.value,
+        location: res.data.location.name,
         weatherType: weatherType.value,
         temperature: temperature.value,
         humidity: humidity.value,
         description: description.value,
         api_weatherType: res.data.current.condition.text,
         api_temperature: res.data.current.temp_c,
-        api_humidity: res.data.current.humidity
+        api_humidity: res.data.current.humidity,
+        date: new Date().toLocaleString()
     }
 
     addToLocalStorage(lengthOfLocalStorage().toString(), data)
-    updateResults(keys)
+    let updatedKeys = prepareData()
+    updateResults(updatedKeys)
 }
 
 async function init() {
