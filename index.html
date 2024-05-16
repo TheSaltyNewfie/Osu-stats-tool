@@ -11,10 +11,12 @@
 <body>
     <header>
         <h1>Weather Journal</h1>
+        <p>Record what you see outside and compare it to a weather API</p>
+        <br>
         <input type="text" id="location" placeholder="Location"/>
         <p>Please input what you see outside</p>
     </header>
-    <div id="card">
+    <main>
         <div id="form">
             <select id="weatherType">
                 <option value="sunny">Sunny</option>
@@ -28,9 +30,32 @@
             <textarea id="description" placeholder="Describe the weather"></textarea>
             <button id="submitBtn">Submit</button>
         </div>
-    </div>
-    <div id="card" class="infoarea">
-        <h1>Results</h1>
+    </main>
+    <div id="infoarea">
+        <h1>Past Journals</h1>
+        <div id="past-journals">
+            <div id="card">
+                <h2>Location: <span id="location1"></span></h2>
+                <p>Weather: <span id="weatherType1"></span></p>
+                <p>Temperature: <span id="temperature1"></span>°C</p>
+                <p>Humidity: <span id="humidity1"></span>%</p>
+                <p>Description: <span id="description1"></span></p>
+            </div>
+            <div id="card">
+                <h2>Location: <span id="location1"></span></h2>
+                <p>Weather: <span id="weatherType1"></span></p>
+                <p>Temperature: <span id="temperature1"></span>°C</p>
+                <p>Humidity: <span id="humidity1"></span>%</p>
+                <p>Description: <span id="description1"></span></p>
+            </div>
+            <div id="card">
+                <h2>Location: <span id="location1"></span></h2>
+                <p>Weather: <span id="weatherType1"></span></p>
+                <p>Temperature: <span id="temperature1"></span>°C</p>
+                <p>Humidity: <span id="humidity1"></span>%</p>
+                <p>Description: <span id="description1"></span></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

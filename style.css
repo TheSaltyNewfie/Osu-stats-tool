@@ -1,23 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
 body {
-    background-image: url("https://free4kwallpapers.com/uploads/originals/2017/01/05/western-brook-pond-fjord-gros-morne-national-park-newfoundland-and-labrador-wallpaper.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #111414;
+    color: white;
 }
 
-#card, header{
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-#form, header, .infoarea {
+header {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-color: #1E2D2E;
+    padding: 1.5rem;
+    margin: 0.25rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1E2D2E;
+    padding: 1.5rem;
+    margin: 0.25rem;
+    border-radius: 0.5rem;
+}
+
+select,
+input,
+textarea,
+button {
+    width: 200px;
+    height: 40px;
+    background-color: #1E2D2E;
+    color: white;
+    border: 1px solid #494D4B;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+#form select:hover,
+#form input:hover,
+#form textarea:hover,
+#form button:hover {
+    background-color: #2E3D3E;
+}
+
+#card {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    background-color: #1E2D2E;
+    padding: 2rem;
+    margin: 0.25rem;
+    border-radius: 0.5rem;
+}
+
+#past-journals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-flow: wrap;
 }
